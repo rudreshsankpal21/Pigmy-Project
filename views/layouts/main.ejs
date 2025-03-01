@@ -8,7 +8,49 @@
   </head>
   <body>
     <!-- Headr section -->
-    <header><%- include("partials/header.ejs") %></header>
+    <script>
+      function updateDateTime() {
+        document.getElementById("currentDateTime").textContent =
+          new Date().toLocaleString();
+      }
+      setInterval(updateDateTime, 1000);
+      updateDateTime();
+    </script>
+    <nav>
+      <style>
+        nav ul {
+          font-size: 2vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+        nav ul li {
+          list-style-type: none;
+        }
+        nav ul li a {
+          text-decoration: none;
+          color: white;
+
+          &:hover {
+            color: aqua;
+          }
+        }
+      </style>
+      <div class="navbar">
+        <h1>Mr.Samarth Finance</h1>
+        <div class="datetime">Date : <span id="currentDateTime"></span></div>
+      </div>
+      <h2>Welcome to Mr.Samarth Finance services</h2>
+
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/add-customer">Add Customer</a></li>
+        <li><a href="/pigmy">Pigmy Transactions</a></li>
+        <li><a href="/check">Check Customers</a></li>
+        <li><a href="/transactions">Check Transactions</a></li>
+      </ul>
+    </nav>
 
     <script>
       function updateDateTime() {
@@ -24,6 +66,8 @@
       <%- body %>
     </main>
     <!-- Footer -->
-    <%-include("../partials/footer.ejs")%>
+    <footer>
+      <p>&copy; 2025 Me.Samarth Finance. All rights reserved.</p>
+    </footer>
   </body>
 </html>
