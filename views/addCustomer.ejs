@@ -1,0 +1,25 @@
+<h2>Add New Customer</h2>
+<form action="/add-customer" method="POST">
+  <label>Customer Name:</label>
+  <input type="text" name="name" required />
+
+  <label>Phone Number:</label>
+  <input type="text" name="phone" required />
+
+  <label>Customer ID:</label>
+  <input type="text" name="customerId" required />
+
+  <label>Account Type:</label>
+  <select name="accountType" required style="text-align: center">
+    <option value="savings" style="color: black">Savings Account</option>
+    <option value="loan" style="color: black">Loan Account</option>
+  </select>
+
+  <label>Loan Amount (only for Loan Account):</label>
+  <input type="number" name="loanAmount" value="0" />
+
+  <div class="button-container">
+    <button type="submit">Add Customer</button>
+    <a href="/check" id="view-cstmr">View Customers</a>
+  </div>
+</form>

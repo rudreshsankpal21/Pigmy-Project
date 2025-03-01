@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Customer Information</title>
+  </head>
+  <body>
+    <h2>Get Customer Information</h2>
+    <form action="/get-customer-info" method="POST">
+      <label for="customerId">Enter Customer ID:</label>
+      <input type="text" name="customerId" id="customerId" required />
+      <button type="submit">Get Info</button>
+    </form>
+
+    <div id="customerInfo" style="margin-top: 20px">
+      <% if (customer) { %>
+      <h3>Customer Information</h3>
+      <p><strong>Name:</strong> <%= customer.name %></p>
+      <p><strong>Phone Number:</strong> <%= customer.phone %></p>
+      <p><strong>Account Type:</strong> <%= customer.accountType %></p>
+      <p><strong>Balance:</strong> <%= customer.balance %></p>
+      <% } else if (error) { %>
+      <p style="color: red"><%= error %></p>
+      <% } %>
+    </div>
+  </body>
+</html>

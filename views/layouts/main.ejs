@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <title>Me.Samarth Finance</title>
+  </head>
+  <body>
+    <!-- Headr section -->
+    <header><%-include("../partials/header.ejs")%></header>
+    <script>
+      function updateDateTime() {
+        document.getElementById("datetime").innerText =
+          new Date().toLocaleString();
+      }
+      setInterval(updateDateTime, 1000);
+      updateDateTime();
+    </script>
+
+    <main>
+      <!-- body section -->
+      <%- body %>
+    </main>
+    <!-- Footer -->
+    <%-include("../partials/footer.ejs")%>
+  </body>
+</html>

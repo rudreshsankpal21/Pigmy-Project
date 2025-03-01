@@ -1,0 +1,15 @@
+<main>
+  <h2>Pigmy Transactions</h2>
+  <form action="/pigmy" method="POST">
+    <label>Customer ID:</label>
+    <input type="text" name="customerId" required />
+    <label>Amount:</label>
+    <input type="number" name="amount" required />
+    <label>Type:</label>
+    <select name="type" required>
+      <option value="deposit">Deposit</option>
+      <option value="withdrawal">Withdrawal</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+</main>

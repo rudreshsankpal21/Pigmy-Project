@@ -1,0 +1,24 @@
+<h2>Transaction History</h2>
+<table border="1">
+  <tr>
+    <th>Customer ID</th>
+    <th>Name</th>
+    <th>Account Type</th>
+    <th>Transaction Type</th>
+    <th>Amount</th>
+    <th>Date</th>
+  </tr>
+  <% transactions.forEach(transaction => { %>
+  <tr>
+    <td><%= transaction.customerId %></td>
+    <td><%= transaction.name %></td>
+    <td><%= transaction.accountType %></td>
+    <td><%= transaction.type %></td>
+    <td>₹<%= transaction.amount %></td>
+    <td><%= new Date(transaction.date).toLocaleString() %></td>
+  </tr>
+  <% }) %>
+</table>
+<div style="text-align: center; margin-top: 20px">
+  <a href="/add-customer" id="view-cstmr">Add Customer</a>
+</div>

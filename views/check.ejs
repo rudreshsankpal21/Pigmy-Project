@@ -1,0 +1,141 @@
+<h2>Customer List</h2>
+
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Customer ID</th>
+    <th>Phone Number</th>
+    <th>Account Type</th>
+    <th>Balance</th>
+    <th>Actions</th>
+  </tr>
+  <% customers.forEach(customer => { %>
+  <tr>
+    <td><%= customer.name %></td>
+    <td><%= customer.id %></td>
+    <td><%= customer.phone %></td>
+    <td><%= customer.accountType %></td>
+    <td><%= customer.balance %></td>
+    <td>
+      <div class="action-buttons">
+        <form action="/transaction" method="POST" class="action-form">
+          <input type="hidden" name="customerId" value="<%= customer.id %>" />
+          <input
+            type="number"
+            name="amount"
+            placeholder="Enter amount"
+            required
+          />
+          <input type="hidden" name="type" value="withdraw" />
+          <button type="submit" class="btn btn-danger">Withdraw</button>
+        </form>
+        <form action="/transaction" method="POST" class="action-form">
+          <input type="hidden" name="customerId" value="<%= customer.id %>" />
+          <input
+            type="number"
+            name="amount"
+            placeholder="Enter amount"
+            required
+          />
+          <input type="hidden" name="type" value="deposit" />
+          <button type="submit" class="btn btn-primary">Deposit</button>
+        </form>
+        <form
+          action="/delete-customer"
+          method="POST"
+          class="action-form"
+          onsubmit="return confirmDelete()"
+        >
+          <input type="hidden" name="customerId" value="<%= customer.id %>" />
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a
+          href="/edit-customer/<%= customer.id %>"
+          class="btn btn-primary"
+          id="edit-btn"
+          >Edit</a
+        >
+      </div>
+    </td>
+  </tr>
+  <% }) %>
+</table>
+
+<div style="text-align: center; margin-top: 20px">
+  <a href="/add-customer" id="view-cstmr">Add New Customer</a>
+</div>
+
+<a
+  href="/get-customer-info"
+  style="color: white; text-decoration: underline; font-size: 18px"
+  class="get-customer-info-link"
+  >Get Customer Information</a
+>
+
+<body onload="showPopupMessage()">
+  <div id="popup" class="popup">
+    <p id="popupMessage"></p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+  <script>
+    function showPopupMessage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const message = urlParams.get("message");
+      const type = urlParams.get("type");
+
+      if (message) {
+        const popup = document.getElementById("popup");
+        const popupMessage = document.getElementById("popupMessage");
+
+        popupMessage.textContent = message;
+        popup.style.display = "block";
+
+        if (type === "success") {
+          popup.style.backgroundColor = "green";
+        } else {
+          popup.style.backgroundColor = "red";
+        }
+
+        // Remove query params after showing message
+        setTimeout(() => {
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname
+          );
+        }, 2000);
+      }
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
+  <style>
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: green;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .popup button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      border: none;
+      background: white;
+      color: black;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+  </style>
+</body>
