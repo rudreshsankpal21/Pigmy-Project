@@ -15,14 +15,15 @@
 
     <div id="customerInfo" style="margin-top: 20px">
       <% if (customer) { %>
-      <h3>Customer Information</h3>
+      <h2>Customer Information</h2>
       <p><strong>Name:</strong> <%= customer.name %></p>
-      <p><strong>Phone Number:</strong> <%= customer.phone %></p>
+      <p><strong>Phone:</strong> <%= customer.phone %></p>
       <p><strong>Account Type:</strong> <%= customer.accountType %></p>
-      <p><strong>Balance:</strong> <%= customer.balance %></p>
+      <p><strong>Balance:</strong> ₹<%= customer.balance %></p>
       <% } else if (error) { %>
       <p style="color: red"><%= error %></p>
       <% } %>
+      <a href="/check">Back to Customers</a>
     </div>
   </body>
 </html>
