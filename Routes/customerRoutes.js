@@ -119,6 +119,16 @@ router.get("/get-customer-info/:customerId", (req, res) => {
 
   res.render("getCustomerInfo", { customer });
 });
+router.get("/get-customer-info", (req, res) => {
+  const customers = readData();
+  const customer = customers.find((c) => c.id === req.params.customerId);
+
+  if (!customer) {
+    return res.status(404).send("Customer not found");
+  }
+
+  res.render("getCustomerInfo", { customer });
+});
 
 // Route to handle form submission and get customer info
 router.post("/get-customer-info", (req, res) => {
