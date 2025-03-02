@@ -110,31 +110,25 @@ router.get("/check", (req, res) => {
 
 // Route to render Get Customer Info page
 router.get("/get-customer-info/:customerId", (req, res) => {
+  const { customerId } = req.params;
   const customers = readData();
-  const customer = customers.find((c) => c.id === req.params.customerId);
+  const customer = customers.find((c) => c.id === customerId);
 
   if (!customer) {
-    return res.status(404).send("Customer not found");
+    return res.render("getCustomerInfo", { customer: null });
   }
-
   res.render("getCustomerInfo", { customer });
 });
+
 router.get("/get-customer-info", (req, res) => {
-  // const customers = readData();
-  // const customer = customers.find((c) => c.id === req.params.customerId);
-
-  // if (!customer) {
-  //   return res.status(404).send("Customer not found");
-  // }
-
-  res.render("getCustomerInfo", { customer });
+  res.render("getCustomerInfo", { customer: null }); // Pass null initially
 });
 
 // Route to handle form submission and get customer info
 router.post("/get-customer-info", (req, res) => {
   const { customerId } = req.body;
-  const customers = readData(customersFile);
-  const customer = customers.find((c) => c.id === customerId); // Adjust based on your customer ID field
+  const customers = readData();
+  const customer = customers.find((c) => c.id === customerId);
 
   if (customer) {
     res.render("getCustomerInfo", { customer, error: null });
@@ -145,5 +139,4 @@ router.post("/get-customer-info", (req, res) => {
     });
   }
 });
-
 module.exports = router;

@@ -15,15 +15,43 @@
 
     <div id="customerInfo" style="margin-top: 20px">
       <% if (customer) { %>
-      <h2>Customer Information</h2>
       <p><strong>Name:</strong> <%= customer.name %></p>
       <p><strong>Phone:</strong> <%= customer.phone %></p>
       <p><strong>Account Type:</strong> <%= customer.accountType %></p>
       <p><strong>Balance:</strong> ₹<%= customer.balance %></p>
-      <% } else if (error) { %>
-      <p style="color: red"><%= error %></p>
+      <% } else { %>
+      <p style="color: red">Customer not found. Please check the ID.</p>
       <% } %>
-      <a href="/check">Back to Customers</a>
+      <a
+        href="/get-customer-info"
+        style="
+          padding: 10px 15px;
+          border: none;
+          cursor: pointer;
+          border-radius: 6px;
+          font-size: 12px;
+          transition: all 0.3s ease;
+          background-color: #007bff;
+          color: white;
+          text-decoration: none;
+        "
+        >Search Again</a
+      >
+      <a
+        href="/check"
+        style="
+          padding: 10px 15px;
+          border: none;
+          cursor: pointer;
+          border-radius: 6px;
+          font-size: 12px;
+          transition: all 0.3s ease;
+          background-color: #007bff;
+          color: white;
+          text-decoration: none;
+        "
+        >Back to Customers</a
+      >
     </div>
   </body>
 </html>
