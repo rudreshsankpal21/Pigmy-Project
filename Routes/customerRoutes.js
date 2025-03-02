@@ -117,7 +117,7 @@ router.get("/get-customer-info/:customerId", (req, res) => {
     return res.status(404).send("Customer not found");
   }
 
-  res.render("getCustomerinfo", { customer });
+  res.render("getCustomerInfo", { customer });
 });
 router.get("/get-customer-info", (req, res) => {
   // const customers = readData();
@@ -127,7 +127,7 @@ router.get("/get-customer-info", (req, res) => {
   //   return res.status(404).send("Customer not found");
   // }
 
-  res.render("getCustomerinfo", { customer });
+  res.render("getCustomerInfo", { customer });
 });
 
 // Route to handle form submission and get customer info
@@ -137,9 +137,9 @@ router.post("/get-customer-info", (req, res) => {
   const customer = customers.find((c) => c.id === customerId); // Adjust based on your customer ID field
 
   if (customer) {
-    res.render("getCustomerinfo", { customer, error: null });
+    res.render("getCustomerInfo", { customer, error: null });
   } else {
-    res.render("getCustomerinfo", {
+    res.render("getCustomerInfo", {
       customer: null,
       error: "Customer not found.",
     });
